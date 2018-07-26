@@ -1,0 +1,11 @@
+<h1>Anonymous Notes</h1>
+
+<div>
+  <form (submit)="onSubmit($event, formData)" #formData="ngForm">
+    <div>
+      <label for="note">Note: </label>
+      <input type="text" name="note" [(ngModel)]="note.context" required minlength="3">
+    </div>
+    <button type="submit">Add Note</button>
+  </form>
+</div>

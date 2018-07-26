@@ -1,0 +1,8 @@
+<h2>Notes</h2>
+<div *ngIf="notes" class="notes">
+  <div *ngFor="let note of notes">
+    <div class="note">
+      <p>{{note.context}} <span>{{note.createdAt}}</span></p>
+    </div>
+  </div>
+</div>
