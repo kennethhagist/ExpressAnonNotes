@@ -1,25 +1,36 @@
 import { Injectable } from '@angular/core';
-import { Note } from './note';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
+import { ActivatedRoute } from '@angular/router';
+import 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+// import { Observable } from 'rxjs/Observable';
+// import { Note } from './note';
 
 @Injectable()
 export class NoteService {
+  notes: Array<object> = [];
+  noteObserver = new BehaviorSubject(this.notes)
 
-  private base = "api/notes";
-
-  constructor(private http: Http) { }
+  constructor(private _http: Http) { }
 
   retrieveAll() {
-    return this.http.get(this.base)
-      .map(response => response.json()).toPromise();
+    this._http.get("/notes").subscribe( res => {
+      this.notes = res.json();
+      this.noteObserver.next(this.notes);
+    }, (err) => {
+      console.log(err);
+    })
+
   }
 
-  createNote(note: Note) {
-    return this.http.post(this.base, note)
-      .map(response => response.json()).toPromise();
+  createNote(note) {
+    this._http.post("/notes", note).subscribe( res => {
+      this.notes = res.json();
+      this.noteObserver.next(this.notes);
+    }, (err) => {
+      console.log(err);
+    })
+
   }
 
 }

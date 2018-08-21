@@ -1,5 +1,5 @@
-import { NoteService } from './../note.service';
-import { Note } from './../note';
+import { NoteService } from '../note.service';
+import { Note } from '../note';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,22 +8,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notes-new.component.css']
 })
 export class NotesNewComponent implements OnInit {
-  note = new Note();
 
-  constructor(private noteService: NoteService) { }
+  note: Note = new Note();
 
-  ngOnInit() {}
+  constructor(private _noteService: NoteService) { }
 
-  onSubmit(event: Event, form) {
-    event.preventDefault();
-    this.note.context = form.value.note
+  onSubmit(note) {
+    // event.preventDefault();
+    // this.note.context = form.value.note
 
-    this.noteService.createNote(this.note)
-      .then(note => {
-        console.log(note);
-      });
-
+    this._noteService.createNote(this.note)
+      // .then(note => {
+      //   console.log(note);
+      // });
     this.note = new Note();
+  }
+
+  ngOnInit() {
+
   }
 
 }
