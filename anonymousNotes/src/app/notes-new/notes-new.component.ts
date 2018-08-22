@@ -15,7 +15,7 @@ export class NotesNewComponent implements OnInit {
 
   onSubmit(note) {
     // event.preventDefault();
-    // this.note.context = form.value.note
+    // this.note.content = form.value.note
 
     this._noteService.createNote(this.note)
       // .then(note => {
