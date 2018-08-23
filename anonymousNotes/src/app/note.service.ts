@@ -25,7 +25,10 @@ export class NoteService {
 
   createNote(note) {
     this._http.post("/notes", note).subscribe( res => {
-      this.notes = res.json();
+      const note = res.json();
+      // this.notes.push(note) - possible method but not recommended
+      this.notes = [note,...this.notes]
+      // using pipe would better method for ordering
       this.noteObserver.next(this.notes);
     }, (err) => {
       console.log(err);

@@ -10,8 +10,9 @@ module.exports = function(app) {
         notes.create(req, res);
     });
     
-    app.all("*"), function(req, res) {
+    app.all("*", function(req, res) {
+        console.log('hitting catch all route')
         // notes.show(req,res)
-        res.sendFile(path.resolve("./public/dist/index.html"))
-    };
+        res.sendFile(path.resolve("anonymousNotes/dist/index.html"))
+    });
 };

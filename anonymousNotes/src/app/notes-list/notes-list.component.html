@@ -1,5 +1,5 @@
-<router-outlet></router-outlet>
-<h2>Notes</h2>
+<h2>List of Notes</h2>
+<app-notes-new></app-notes-new>
 <div id="list">
   <div *ngFor="let n of notes" class="one-note">
     <p class="time">Noted on: {{ n.createdAt | date: 'medium' }}</p>
@@ -7,4 +7,3 @@
     <p class="note">{{ n.content }} </p>
   </div>
 </div>
-

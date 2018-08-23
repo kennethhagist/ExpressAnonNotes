@@ -19,10 +19,7 @@ module.exports = {
                 res.json({ error: "failed to create note" });
                 console.log('something went wrong');
             } else {
-                Note.find({}).sort('-createdAt').exec(function (err, notes) {
-                    console.log('successfully added a note!');
-                    res.json(notes);
-                });
+                res.json(note);
             }
         });
     },

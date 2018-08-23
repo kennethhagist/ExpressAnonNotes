@@ -2,11 +2,14 @@ var express = require('express');
 var path = require('path');
 var app = express();
 var bodyParser = require("body-parser");
-var mongoose = require('mongoose');
 
 app.use(express.static(__dirname + '/anonymousNotes/dist'));
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
+app.use (function (req, res, next) {
+    console.log('request.url', req.url)
+    next()
+})
 
 require('./server/config/database');
 require('./server/config/routes')(app);
